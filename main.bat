@@ -6,8 +6,11 @@ call :text warning "this is consol 1. Can you see?"
 pause
 call :text message "You will see the main process here."
 call :text message "loading setting..."
-for 
+if not exist setting.ini (call :text error "no setting file found!"&&call :text error "engine will stop."&&pause&&exit)
+for /f %%i in (setting.ini) do (echo loading %%i&&set %%i)
 call :text message "now, we are going to create random size of the world."
+set tmp=%random%
+if %
 call :text message "starting framework..."
 start framework.bat
 :text
