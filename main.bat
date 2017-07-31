@@ -9,8 +9,9 @@ call :text message "loading setting..."
 if not exist setting.ini (call :text error "no setting file found!"&&call :text error "engine will stop."&&pause&&exit)
 for /f %%i in (setting.ini) do (echo loading %%i&&set %%i)
 call :text message "now, we are going to create random size of the world."
+:xchoice
 set tmp=%random%
-if %
+if %tmp% gtr %xmax% (call :text warning "x:%tmp%. greater than maxium x size. reselecting."&&goto xchoice)
 call :text message "starting framework..."
 start framework.bat
 :text
