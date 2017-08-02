@@ -14,7 +14,8 @@ echo generating dimension...
 :gen_di
 set dimension=%random%
 if %dimension%==1 goto gen_di
-if %dimension% GTR %max_dimen% (echo %dimension% seems too big for dimensipn. Trying again...&goto gen_di)
+::如果dimension大于9，有可能在创建生命初始位置时坐标轴重叠，导致大于9的坐标轴无效。
+if %dimension% GTR 9 (echo %dimension% seems too big for dimensipn. Trying again...&goto gen_di)
 echo generating axis on each dimension
 :gen_axis
 set a=1
@@ -64,3 +65,19 @@ if %a%==%seelevel% goto gen_seng
 set /a a=%a%+1
 goto gen_senf
 :gen_seng
+set copytime=%random%
+set mutation=%random%
+set tmp=%mutation%*10000/32768
+echo Gene mutation opssible:0.000%tmp%
+if %copytime% GTR %max_cpytime% goto gen_seng
+start /wait gene_copy.bat %copytime% start
+start /wait gene_error.bat %copytime% %mutation%
+set a=1
+:stpsta
+set b=1
+:stpstb
+set c=%random%
+set %a%_x%b%=%c%
+set axis_%b% >a.txt
+for /f %%i in a.txt do (if 
+if %c% GTR 
