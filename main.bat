@@ -37,4 +37,30 @@ echo generating energy difficulty...
 set /a engy_diff=%random%+1
 set /a engy_difg=%engy_diff%*10000/32768
 echo energy difficulty:0.000%energy_difg%
-if %success%==0 (goto maxtimede)
+:gen_ail
+set atlastai=%random%
+if %atlastai% GTR %max_ail% goto gen_ail
+echo at last ai: %atlastai%
+set tmp=%random%
+set sucshow=%tmp%%%2
+if %success%==0 (goto gen_matd)
+:gen_mat
+set maxtime=%random%
+if %maxtime% GTR %max_maxtime% goto gen_mat
+echo max time:%maxtime%
+:gen_matd
+set tmp=%random%
+set ismaxsee=%tmp%%%2
+if %ismaxsee%==0 goto gen_mxsd
+set maxsee=%random%
+echo max see:%maxsee% blocks
+:gen_mxsd
+:gen_sene
+set seelevel=%random%
+set a=1
+:gen_senf
+set perfix_%a%=%random%
+if %a%==%seelevel% goto gen_seng
+set /a a=%a%+1
+goto gen_senf
+:gen_seng
